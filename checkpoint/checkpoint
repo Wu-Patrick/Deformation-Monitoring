@@ -1,0 +1,2 @@
+model_checkpoint_path: "PUNet-tensorflow-ZhipengWu"
+all_model_checkpoint_paths: "PUNet-tensorflow-ZhipengWu"

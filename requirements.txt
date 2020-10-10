@@ -1,0 +1,4 @@
+tensorflow_gpu
+tifffile
+matplotlib
+numpy
