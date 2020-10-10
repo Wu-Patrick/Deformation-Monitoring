@@ -149,9 +149,9 @@ def unwrap(sess, interfFolder, unwFolder, ckpt_dir,outputPng, rows, cols):
 if __name__=='__main__':
     parser = argparse.ArgumentParser(description="Run PUNet for phase unwrapping.")
     parser.add_argument('--input', type=str, default='data/interf',
-                        help='input folder of interferograms (default: data/interf)')
+                        help='input folder of interferograms (*.wzp or *.tif) (default: data/interf)')
     parser.add_argument('--output', type=str, default='data/unwrapped',
-                        help='Output folder for unwrapped phase (*.wzp)')
+                        help='Output folder for unwrapped phase')
     parser.add_argument('--outputPng', type=int, default=1,
                         help='Output the corresponding pseudo-color image (default: 1)')
     parser.add_argument('--rows', type=int, default=180,
