@@ -3,7 +3,7 @@
 """
 Copyright:    Zhipeng Wu
 Filename:     runPuNet.py
-Description:
+Description:  Run PUNet for phase unwrapping
 
 @author:      wuzhipeng
 @email:       763008300@qq.com
@@ -22,11 +22,13 @@ import argparse
 import tifffile
 from matplotlib import image, pyplot
 
-def imread(filename):
+def imread(filename, rows, cols):
     if filename.endswith('.wzp'):
-        return np.fromfile(filename, dtype=np.float32)
+        return np.fromfile(filename, dtype=np.float32).reshape(1, rows, cols, 1)
     elif filename.endswith('.tif'):
-        return tifffile.imread(filename)
+        img = tifffile.imread(filename)
+        (rows, cols) = img.shape
+        return img.reshape(1, rows, cols, 1)
     else:
         print('Unsupported file type: %s' % filename)
         print('Only supports binary files (*.wzp, float32) and Tiff files (*.tif, float32)')
@@ -123,8 +125,7 @@ def unwrap(sess, interfFolder, unwFolder, ckpt_dir,outputPng, rows, cols):
     
     start = time.time()
     for i in range(len(interfFile)):
-        interf = imread(interfFile[i])
-        interf = interf.reshape(1,rows, cols,1)
+        interf = imread(interfFile[i],rows, cols)
 
         estimatedConstant = np.mean(np.abs(interf)) * np.sign(np.mean(interf))
         interf = np.angle(np.exp(1j * (interf - estimatedConstant)))
@@ -148,15 +149,15 @@ def unwrap(sess, interfFolder, unwFolder, ckpt_dir,outputPng, rows, cols):
 if __name__=='__main__':
     parser = argparse.ArgumentParser(description="Run PUNet for phase unwrapping.")
     parser.add_argument('--input', type=str, default='data/interf',
-                        help='The path where the interferograms is located (default: data/interf)')
+                        help='input folder of interferograms (default: data/interf)')
     parser.add_argument('--output', type=str, default='data/unwrapped',
                         help='Output folder for unwrapped phase (*.wzp)')
     parser.add_argument('--outputPng', type=int, default=1,
                         help='Output the corresponding pseudo-color image (default: 1)')
     parser.add_argument('--rows', type=int, default=180,
-                        help='rows of data (default: 180)')
+                        help='rows of the input *.wzp (default: 180)')
     parser.add_argument('--cols', type=int, default=180,
-                        help='cols of data (default: 180)')
+                        help='cols of the input *.wzp (default: 180)')
     parser.add_argument('--ckpt_dir', type=str, default='./checkpoint',
                         help='checkpoint folder (default: ./checkpoint)')
     args = parser.parse_args()
