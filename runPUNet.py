@@ -105,12 +105,15 @@ def load(sess, checkpoint_dir):
         return False
 
 def unwrap(sess, interfFolder, unwFolder, ckpt_dir,outputPng, rows, cols):
-    assert os.path.isdir(interfFolder), 'Path does not exist: '+interfFolder
-    interfFile = glob(interfFolder+'/*[.wzp,.tif]')
-    interfFile = sorted(interfFile)
+    if os.path.isdir(interfFolder):
+        interfFile = glob(interfFolder + '/*[.wzp,.tif]')
+        interfFile = sorted(interfFile)
+    elif os.path.isfile(interfFolder):
+        interfFile = [interfFolder]
+    else:
+        raise FileNotFoundError('Path does not exist: '+interfFolder)
 
-    if not os.path.exists(unwFolder):
-        os.mkdir(unwFolder)
+    os.makedirs(unwFolder,exist_ok=True)
 
     X = tf.placeholder(tf.float32, [None, None, None, 1])
     is_training = tf.placeholder(tf.bool, name='is_training')
@@ -148,9 +151,9 @@ def unwrap(sess, interfFolder, unwFolder, ckpt_dir,outputPng, rows, cols):
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser(description="Run PUNet for phase unwrapping.")
-    parser.add_argument('--input', type=str, default='data/interf',
-                        help='input folder of interferograms (*.wzp or *.tif) (default: data/interf)')
-    parser.add_argument('--output', type=str, default='data/unwrapped',
+    parser.add_argument('--input', type=str, default='data/dataset1/interf',
+                        help='input folder or file of the interferograms (*.wzp or *.tif) (default: data/interf)')
+    parser.add_argument('--output', type=str, default='data/dataset1/unwrapped',
                         help='Output folder for unwrapped phase')
     parser.add_argument('--outputPng', type=int, default=1,
                         help='Output the corresponding pseudo-color image (default: 1)')
