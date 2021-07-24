@@ -4,10 +4,8 @@ The source code of Paper: **Deep learning for localized rapid deformation detect
 Authors: Zhipeng Wu, *Student Member, IEEE*, Teng Wang, Yingjie Wang, Robert Wang, *Senior Member, IEEE*, Daqing Ge
 
 
+> **If you want to retrain the networks, see [Deformation-Monitoring-Dev](https://github.com/Wu-Patrick/Deformation-Monitoring-Dev).**
 
-**If you want to retrain the networks, see [Deformation-Monitoring-Dev](https://github.com/Wu-Patrick/Deformation-Monitoring-Dev).**
-
----
 
 ### Introduction
 
