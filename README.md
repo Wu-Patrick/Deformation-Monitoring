@@ -4,6 +4,8 @@ The source code of Paper: **Deep learning for localized rapid deformation detect
 Authors: Zhipeng Wu, *Student Member, IEEE*, Teng Wang, Yingjie Wang, Robert Wang, *Senior Member, IEEE*, Daqing Ge
 
 
+> **The trained PUNet is mainly applied to unwrap very localized, rapidly deforming areas, particularly the mining subsidence as we stated in the manuscript. The proposed dataset generation strategy allows for richer samples, which can enable the retrained PUNet to cope with more complex situations. ** 
+>
 > **If you want to retrain the networks, see [Deformation-Monitoring-Dev](https://github.com/Wu-Patrick/Deformation-Monitoring-Dev).**
 
 
