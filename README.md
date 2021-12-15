@@ -13,6 +13,8 @@ Authors: Zhipeng Wu, *Student Member, IEEE*, Teng Wang, Yingjie Wang, Robert Wan
 
 This is a TensorFlow (1.13.1) implementation of PUNet. It can be used to unwrap interferograms with dense fringes and severe noise. The resolution of the input interferogram should be about 20m×20m. Any size of the interferogram can be input, but 180×180 pixels is recommended. The input data should be binary files (\*.wzp, float32) or Tiff files (\*.tif, float32).
 
+For reading and writing binary files, see **imreadbin.m** and **imreadbin.m** in [MatlabToolbox](https://github.com/Wu-Patrick/MatlabToolbox).
+
 ![img](img.png)
 
 ### Installation
