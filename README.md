@@ -7,6 +7,8 @@ Authors: Zhipeng Wu, *Student Member, IEEE*, Teng Wang, Yingjie Wang, Robert Wan
 > **The trained PUNet is mainly applied to unwrap very localized, rapidly deforming areas, particularly the mining subsidence as we stated in the manuscript. The proposed dataset generation strategy allows for richer samples, which can enable the retrained PUNet to cope with more complex situations. ** 
 >
 > **If you want to retrain the networks, see [Deformation-Monitoring-Dev](https://github.com/Wu-Patrick/Deformation-Monitoring-Dev).**
+>
+> **For code to generate the training dataset, see [InterferogramSimulator](https://github.com/Wu-Patrick/InterferogramSimulator).**
 
 
 ### Introduction
@@ -52,6 +54,20 @@ python runPUNet.py
 python runPUNet.py --input data/dataset1/interf --output data/dataset1/unwrapped --outputPng 1 --rows 180 --cols 180
 # or
 python runPUNet.py --input data/dataset2/interf/300_20190120-20190201.wzp --output data/dataset2/unwrapped --outputPng 1 --rows 300 --cols 300
+~~~
+
+### Citation
+If you use this code, please cite the following:
+~~~BibTeX
+@ARTICLE{9583229,
+  author={Wu, Zhipeng and Wang, Teng and Wang, Yingjie and Wang, Robert and Ge, Daqing},
+  journal={IEEE Transactions on Geoscience and Remote Sensing}, 
+  title={Deep Learning for the Detection and Phase Unwrapping of Mining-Induced Deformation in Large-Scale Interferograms}, 
+  year={2022},
+  volume={60},
+  number={},
+  pages={1-18},
+  doi={10.1109/TGRS.2021.3121907}}
 ~~~
 
 ### Acknowledgement
